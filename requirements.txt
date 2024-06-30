@@ -1,0 +1,6 @@
+Flask==2.0.2
+Werkzeug==2.0.2
+pymongo==3.12.0
+configparser==5.0.2
+datetime==4.3
+sqlite3

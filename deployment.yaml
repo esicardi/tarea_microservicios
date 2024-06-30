@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: chuck-facts-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 48080
+      targetPort: 48080
+      protocol: TCP
+  selector:
+    app: chuck-facts-app
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chuck-facts-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: chuck-facts
+  template:
+    metadata:
+      labels:
+        app: chuck-facts
+    spec:
+      containers:
+        - name: chuck-facts
+          image: esicardi/chuck-facts:latest
+          ports:
+            - containerPort: 48080
